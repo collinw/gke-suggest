@@ -1,0 +1,29 @@
+{
+  "apiVersion": "v1beta1",
+  "kind": "ReplicationController",
+  "id": "suggest-root",
+  "desiredState": {
+    "replicas": 1,
+    "replicaSelector": { "name": "root" },
+    "podTemplate": {
+      "desiredState": {
+        "manifest": {
+          "version": "v1beta1",
+          "id": "root-controller",
+          "containers": [{
+            "image": "collinw/root",
+            "name": "root",
+            "ports": [
+              { "hostPort": 9640, "containerPort": 9000 }
+            ],
+            "env": [
+              {"name": "LEAVES", "value": "k8s-suggest-node-1:9640,k8s-suggest-node-2:9640,k8s-suggest-node-3:9640,k8s-suggest-node-4:9640,k8s-suggest-node-5:9640,k8s-suggest-node-6:9640,k8s-suggest-node-7:9640,k8s-suggest-node-8:9640,k8s-suggest-node-9:9640,k8s-suggest-node-10:9640"}
+            ]
+          }],
+        }
+      },
+      "labels": { "name": "root" }
+    },
+  },
+  "labels": { "name": "root" }
+}
