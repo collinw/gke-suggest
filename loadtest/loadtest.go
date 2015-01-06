@@ -23,10 +23,11 @@ func worker(rootAddr string, queries []string, counter chan int) {
 		query := rootAddr + "/?q=" + term
 		resp, err := http.Get(query)
 		counter <- 1
-		if err != nil {
+		if err == nil {
+			resp.Body.Close()
+		} else {
 			log.Printf("Error querying root: %v", err)
 		}
-		resp.Body.Close()
 	}
 }
 
