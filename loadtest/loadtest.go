@@ -9,6 +9,7 @@ import (
 	"os"
 	"strconv"
 	"sync"
+	"time"
 )
 
 var (
@@ -34,7 +35,7 @@ func statusUpdate(updates chan int) {
 	for {
 		counter += int64(<-updates)
 		if counter % 1000 == 0 {
-			log.Printf("Sent queries: %v", counter)
+			log.Printf("Sent queries: %v at %v", counter, time.Now().Unix())
 		}
 	}
 }
