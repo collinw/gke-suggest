@@ -1,0 +1,9 @@
+{
+  "apiVersion": "v1beta1",
+  "kind": "Service",
+  "id": "root",
+  "port": 9640,
+  "containerPort": 9000,
+  "selector": { "name": "root" },
+  "createExternalLoadBalancer": true
+}
